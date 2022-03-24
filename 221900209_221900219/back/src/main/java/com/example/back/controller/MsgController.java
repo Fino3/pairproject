@@ -9,6 +9,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @RestController
-
+@CrossOrigin
 public class MsgController {
 
     @GetMapping("total")
@@ -32,7 +33,7 @@ public class MsgController {
     }
 
     public String buildJson(int i) throws IOException {
-        InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-generator/mybatis-config.xml");
+        InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
         //初始化mybatis,创建SqlSessionFactory类的实例
         SqlSessionFactory sqlSessionFactory =  new SqlSessionFactoryBuilder().build(resourceAsStream);
         //创建session实例
