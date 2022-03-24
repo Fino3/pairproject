@@ -62,5 +62,5 @@ public interface scheduleMapper {
      */
     int updateByExample(@Param("record") schedule record, @Param("example") scheduleExample example);
 
-    List<schedule> selectByDate(String date);
+    List<schedule> selectByAny(String date,String item,String place);
 }
