@@ -8,7 +8,7 @@
     <context id="MySqlContext" targetRuntime="MyBatis3">
         <!--配置数据库的链接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/Olympics" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/Olympics?serverTimezone=GMT%2B8&amp;useSSL=false" userId="root"
                         password="root"/>
         <!--数据库BigDecimals字段在java中定义-->
         <javaTypeResolver>
@@ -29,9 +29,9 @@
         </javaClientGenerator>
         <!--要生成的表结构-->
         <table tableName="total" domainObjectName="total"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
             <generatedKey column="rank" sqlStatement="Mysql" identity="true" />
         </table>
         <table tableName="schedule" domainObjectName="schedule"

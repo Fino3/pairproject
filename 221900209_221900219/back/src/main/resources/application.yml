@@ -1,12 +1,13 @@
-server.port=8080
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Olimpics?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
 
 mybatis:
-  config-location: classpath:mybatis.xml
-  mapper-locations:
-    - classpath:mapper/*.xml
-
-pagehelper:
-  helper-dialect: mysql
-  reasonable: true
-  support-methods-arguments: true
-  params: count=countSql
+  typeAliasesPackage: com.example.back
+  mapper-locations: classpath*:mapper/*.xml

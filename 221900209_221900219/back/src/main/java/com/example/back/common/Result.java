@@ -2,8 +2,10 @@ package com.example.back.common;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Result {
+public class Result implements Serializable {
     private int code;
     private Object data;
     private String msg;
