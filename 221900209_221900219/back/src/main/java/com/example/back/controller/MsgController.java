@@ -1,12 +1,10 @@
 package com.example.back.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.back.common.Result;
 import com.example.back.common.ToJson;
-import com.example.back.common.Total;
-import com.example.back.common.TotalExample;
+import com.example.back.common.total;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -40,7 +38,7 @@ public class MsgController {
         //创建session实例
         SqlSession session = sqlSessionFactory.openSession();
         if (i==1) {
-            List<Total> list = session.selectList("com.example.back.dao.TotalMapper.selectAll");
+            List<total> list = session.selectList("com.example.back.dao.totalMapper.selectAll");
             Object o=JSONObject.toJSON(list);
             ToJson toJson = new ToJson(list.size(), o);
             JSONObject json1= (JSONObject) JSON.toJSON(toJson);
