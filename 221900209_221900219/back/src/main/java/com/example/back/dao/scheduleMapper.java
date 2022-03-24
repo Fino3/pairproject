@@ -61,4 +61,6 @@ public interface scheduleMapper {
      * @mbg.generated Thu Mar 24 16:19:06 CST 2022
      */
     int updateByExample(@Param("record") schedule record, @Param("example") scheduleExample example);
+
+    List<schedule> selectByDate(String date);
 }
