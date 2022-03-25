@@ -27,17 +27,5 @@ public class Result implements Serializable {
         this.data = data;
         this.msg = msg;
     }
-    public static Result create(int code, Object data, String msg){
-        return new Result(code, data,msg);
-    }
-    public static Result create(int code, Object data){
-        return new Result(code, data,null);
-    }
-    public static Result create(int code){
-        return new Result(code, null,null);
-    }
 
-    public static int SUCCESS = 1000;
-    public static int ERROR = 1001;
-    public static int NO_API_ERROR = 1002;
 }

@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.back.common.Result;
 import com.example.back.common.ToJson;
-import com.example.back.common.schedule;
-import com.example.back.common.total;
+import com.example.back.common.Schedule;
+import com.example.back.common.Total;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -36,14 +36,14 @@ public class MsgController {
         return json;
     }
 
-    public String buildJson(int i,String date,String item,String place) throws IOException, ParseException {
+    public String buildJson(int i,String date,String item,String place) throws IOException {
         InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
         //初始化mybatis,创建SqlSessionFactory类的实例
         SqlSessionFactory sqlSessionFactory =  new SqlSessionFactoryBuilder().build(resourceAsStream);
         //创建session实例
         SqlSession session = sqlSessionFactory.openSession();
         if (i==1) {
-            List<total> list = session.selectList("com.example.back.dao.totalMapper.selectAll");
+            List<Total> list = session.selectList("com.example.back.dao.TotalMapper.selectAll");
             Object o=JSONObject.toJSON(list);
             ToJson toJson = new ToJson(list.size(), o);
             JSONObject json1= (JSONObject) JSON.toJSON(toJson);
@@ -81,7 +81,7 @@ public class MsgController {
             }
             value+=";";
 
-            List<schedule> list = session.selectList("com.example.back.dao.scheduleMapper.findFieldByTableName",value);
+            List<Schedule> list = session.selectList("com.example.back.dao.ScheduleMapper.findFieldByTableName",value);
             Object o=JSONObject.toJSON(list);
             ToJson toJson = new ToJson(list.size(), o);
             JSONObject json1= (JSONObject) JSON.toJSON(toJson);
