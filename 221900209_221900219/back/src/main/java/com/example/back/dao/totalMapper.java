@@ -2,8 +2,9 @@ package com.example.back.dao;
 
 import com.example.back.common.total;
 import com.example.back.common.totalExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface totalMapper {
     /**

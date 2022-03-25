@@ -2,7 +2,10 @@ package com.example.back.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.example.back.common.*;
+import com.example.back.common.Result;
+import com.example.back.common.ToJson;
+import com.example.back.common.schedule;
+import com.example.back.common.total;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,10 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -59,17 +59,12 @@ public class MsgController {
             }
 
             String value="select * from schedule ";
-
-            /*scheduleExample scheduleExample = new scheduleExample();
-            com.example.back.common.scheduleExample.Criteria criteria = scheduleExample.createCriteria();*/
             int check=0;
             if (!date.equals("*")) {
-                /*criteria.andStartdatecnEqualTo(date);*/
                 value+="where startdatecn between "+"'"+date+" 00:00:00' and "+"'"+date+" 23:59:59'";
                 check=1;
             }
             if (!item.equals("*")) {
-                /*criteria.andSubitemnameEqualTo(item);*/
                 if (check==1) {
                     value += " and subitemname = " + "'" + item + "'";
                 } else {
@@ -78,7 +73,6 @@ public class MsgController {
                 }
             }
             if (!place.equals("*")) {
-                /*criteria.andVenuenameEqualTo(place);*/
                 if (check==1) {
                     value += " and venuename = " + "'" + place + "'";
                 } else {
@@ -86,11 +80,6 @@ public class MsgController {
                 }
             }
             value+=";";
-
-            /*Map<String,Object> parameters=new java.util.HashMap<>();
-            parameters.put("0",date);
-            parameters.put("1",item);
-            parameters.put("1",place);*/
 
             List<schedule> list = session.selectList("com.example.back.dao.scheduleMapper.findFieldByTableName",value);
             Object o=JSONObject.toJSON(list);
